@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 10:30:14 by pabril            #+#    #+#             */
-/*   Updated: 2015/12/04 14:56:22 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 19:04:35 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include <string.h>
+
+# define BUFF_SIZE 1024
 
 typedef struct	s_list
 {
@@ -86,9 +88,11 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void			ft_lstadd(t_list **alst, t_list *new);
-void			ft_lstpushback(t_list **alst, t_list *new);
+void			ft_lstadd(t_list **alst, t_list *elem);
+void			ft_lstpushback(t_list **alst, t_list *elem);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+int				get_next_line(int fd, char **line);
 
 #endif
