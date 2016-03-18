@@ -6,65 +6,67 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:10:01 by pabril            #+#    #+#             */
-/*   Updated: 2015/12/04 16:38:26 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/18 15:09:03 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static	int		ft_split_len(const char *s, char c)
+static char	**create_string(char **strnew, char const *s, char c)
 {
-	int len;
+	unsigned int	i;
+	int				j;
+	size_t			len;
 
+	i = 0;
+	j = 0;
 	len = 0;
-	while (s[len] != c)
-		len++;
-	return (len);
-}
-
-static	void	ft_remplissage_tab(char **tab, const char *s, char c)
-{
-	int index;
-	int len;
-
-	index = 0;
-	while (*s == c)
-		s++;
-	while (*s)
+	while (s[i])
 	{
-		len = ft_split_len(s, c);
-		tab[index] = ft_strsub(s, 0, len);
-		while (*s != c && *s)
-			s++;
-		while (*s == c && *s)
-			s++;
-		index++;
+		while ((s[i] != c) && s[i])
+		{
+			len++;
+			i++;
+			if ((s[i] == c) || !s[i])
+			{
+				strnew[j] = ft_strsub(s, (size_t)i - len, len);
+				j++;
+				len = 0;
+			}
+		}
+		if (s[i])
+			i++;
 	}
+	strnew[j] = 0;
+	return (strnew);
 }
 
-static	int		ft_split_nb(const char *s, char c)
+char		**ft_strsplit(char const *s, char c)
 {
-	int i;
-	int nb;
+	int		i;
+	int		found;
+	int		nbstr;
+	char	**strnew;
 
-	nb = 0;
-	i = 1;
-	while (s[i++])
-		if (s[i] == c && s[i - 1] != c)
-			nb++;
-	return (nb);
-}
-
-char			**ft_strsplit(const char *s, char c)
-{
-	char	**tab;
-	int		nb;
-
-	nb = ft_split_nb(s, c);
-	tab = (char **)malloc((sizeof(char *) * nb + 1));
-	if (!tab)
+	i = 0;
+	nbstr = 0;
+	found = 0;
+	if (!s)
 		return (NULL);
-	ft_remplissage_tab(tab, s, c);
-	return (tab);
+	if (s[0] != c && s[0])
+		nbstr++;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			if ((s[i + 1] != c) && s[i + 1])
+				nbstr++;
+			found = 1;
+		}
+		i++;
+	}
+	if (!(strnew = (char **)malloc(sizeof(char *) * (nbstr + 1))))
+		return (NULL);
+	return (create_string(strnew, s, c));
 }

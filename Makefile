@@ -6,7 +6,7 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/17 17:57:22 by pabril            #+#    #+#              #
-#    Updated: 2016/03/18 11:39:34 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/18 18:26:44 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS = $(addprefix src/, $(FILE))
 INC = -I includes -I libft
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra #-Werror
 LIB = libft/libft.a
 
 all : $(NAME)
