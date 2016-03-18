@@ -6,7 +6,7 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/17 17:57:22 by pabril            #+#    #+#              #
-#    Updated: 2016/03/18 18:26:44 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/18 21:03:42 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,18 +17,20 @@ FILE = main.c \
 	   resolution.c
 
 SRCS = $(addprefix src/, $(FILE))
-INC = -I includes -I libft
+INC = -I includes -I libft -I ft_printf
 
 CC = gcc
 FLAGS = -Wall -Wextra #-Werror
 LIB = libft/libft.a
+PRINTF = ft_printf/libftprintf.a
 
 all : $(NAME)
 
 $(NAME) :
 	@make -C libft
+	@make -C ft_printf
 	@echo "building filler binary"
-	$(CC) $(FLAGS) -o $(NAME) $(INC) $(SRCS) $(LIB)
+	$(CC) $(FLAGS) -o $(NAME) $(INC) $(SRCS) $(LIB) $(PRINTF)
 
 clean :
 	@echo "delete *.o in filler"
@@ -37,7 +39,10 @@ clean :
 fclean_lib :
 	@make fclean -C libft
 
-fclean : clean fclean_lib
+fclean_printf :
+	@make fclean -C ft_printf
+
+fclean : fclean_lib fclean_printf clean
 	@echo "removing $(NAME) binary"
 	@rm -f $(NAME)
 

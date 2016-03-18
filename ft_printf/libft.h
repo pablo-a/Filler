@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/01 10:30:14 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 20:38:15 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/16 12:02:12 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 # include <string.h>
 
-# define BUFF_SIZE 1024
-
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
+void			ft_putcharn_fd(char c, size_t number, int file_descriptor);
 void			ft_putstr(const char *s);
 void			ft_putstr_fd(const char *s, int fd);
 void			ft_putnbr(int n);
@@ -28,6 +27,7 @@ void			ft_putendl_fd(const char *s, int fd);
 
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);
+char			*ft_itoa_base(int n, int base);
 
 int				ft_isspace(int c);
 int				ft_isalpha(int c);
@@ -40,6 +40,8 @@ int				ft_toupper(int c);
 int				ft_islower(int c);
 int				ft_isupper(int c);
 int				ft_isspace(int c);
+
+long long		ft_power(int a, int pow);
 
 char			*ft_strcat(char *s1, const char *s2);
 char			*ft_strncat(char *s1, const char *s2, size_t n);
@@ -77,7 +79,5 @@ void			*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
-
-int				get_next_line(int fd, char **line);
 
 #endif

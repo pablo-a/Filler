@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2015/11/25 10:00:05 by pabril            #+#    #+#             */
+/*   Updated: 2015/11/25 10:06:04 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		main(int argc, const char *argv[])
+int		ft_atoi(const char *str)
 {
-	t_current	*current;
-	static int	begin = 1;
+	int result;
+	int sign;
 
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
+	result = 0;
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-')
 	{
-		init_struct(current);
-		first_lecture(current);
+		sign = -1;
+		str++;
 	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
-	return (0);
+	else if (*str == '+')
+		str++;
+	while (ft_isdigit(*str))
+	{
+		result *= 10;
+		result += *str - '0';
+		str++;
+	}
+	if (sign == -1)
+		return (-result);
+	return (result);
 }

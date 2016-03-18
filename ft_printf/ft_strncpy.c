@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2015/11/25 12:05:34 by pabril            #+#    #+#             */
+/*   Updated: 2015/12/01 13:56:15 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
 
-int		main(int argc, const char *argv[])
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	t_current	*current;
-	static int	begin = 1;
+	size_t i;
 
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
+	i = 0;
+	while (src[i] != '\0' && i < n)
 	{
-		init_struct(current);
-		first_lecture(current);
+		dst[i] = src[i];
+		i++;
 	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
-	return (0);
+	while (i < n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
 }

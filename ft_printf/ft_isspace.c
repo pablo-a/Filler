@@ -1,33 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2015/11/26 10:18:40 by pabril            #+#    #+#             */
+/*   Updated: 2015/11/26 10:20:18 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
-
-int		main(int argc, const char *argv[])
+int	ft_isspace(int c)
 {
-	t_current	*current;
-	static int	begin = 1;
-
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
-	{
-		init_struct(current);
-		first_lecture(current);
-	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
-	return (0);
+	return (c == ' ' || c == '\t' || c == '\n' ||
+			c == '\v' || c == '\f' || c == '\r');
 }

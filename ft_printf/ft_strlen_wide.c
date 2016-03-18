@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen_wide.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2016/03/15 13:02:03 by pabril            #+#    #+#             */
+/*   Updated: 2016/03/17 12:24:06 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
+#include "ft_printf.h"
 
-int		main(int argc, const char *argv[])
+size_t	ft_strlen_wide(const wchar_t *original)
 {
-	t_current	*current;
-	static int	begin = 1;
+	const wchar_t*end;
 
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
-	{
-		init_struct(current);
-		first_lecture(current);
-	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
-	return (0);
+	end = original;
+	while (*end != L'\0')
+		end++;
+	return (end - original);
 }

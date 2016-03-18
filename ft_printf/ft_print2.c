@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_print2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2016/02/10 14:23:11 by pabril            #+#    #+#             */
+/*   Updated: 2016/02/26 11:06:12 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "ft_printf.h"
+#include "libft.h"
 
-int		main(int argc, const char *argv[])
+int		ft_print_zeros(int secure, int len)
 {
-	t_current	*current;
-	static int	begin = 1;
+	int a;
 
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
+	if (secure <= len)
 		return (0);
-	if (begin && begin--)
+	a = secure - len;
+	while (secure > len)
 	{
-		init_struct(current);
-		first_lecture(current);
+		write(1, "0", 1);
+		secure--;
 	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
-	return (0);
+	return (a);
 }

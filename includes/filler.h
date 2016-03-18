@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 09:39:15 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 18:45:07 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/18 20:37:36 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <string.h>
 # include "libft.h"
+# include "ft_printf.h"
 
 typedef struct	s_plateau
 {
@@ -36,6 +37,7 @@ typedef struct	s_piece
 typedef struct	s_current
 {
 	int			player;
+	char		mysign;
 	t_piece		*piece;
 	t_plateau	*plateau;
 }				t_current;
@@ -46,7 +48,7 @@ void	lecture(t_current *current);
 void	fill_plateau(t_current *current, char **tab);
 void	get_piece(t_current *current);
 
-int		can_place_piece(t_current *current, int x, int y);
-int		resolution(t_current *current);
+int		can_place_piece(t_current *current, int x, int yi, char c);
+void	resolution(t_current *current);
 
 #endif

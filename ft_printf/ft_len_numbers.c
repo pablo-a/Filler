@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_len_numbers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2016/03/17 12:19:37 by pabril            #+#    #+#             */
+/*   Updated: 2016/03/17 12:21:09 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "ft_printf.h"
+#include "libft.h"
 
-int		main(int argc, const char *argv[])
+int		ft_len_number(long long int n)
 {
-	t_current	*current;
-	static int	begin = 1;
+	int result;
 
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
+	result = 0;
+	if (n == 0)
+		return (1);
+	while (n / 10 > 0 || n / 10 < 0)
 	{
-		init_struct(current);
-		first_lecture(current);
+		n /= 10;
+		result++;
 	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
-	return (0);
+	result++;
+	return (result);
+}
+
+int		ft_len_uns_number(unsigned long long int n)
+{
+	int result;
+
+	result = 0;
+	while (n / 10 > 0)
+	{
+		n /= 10;
+		result++;
+	}
+	result++;
+	return (result);
 }

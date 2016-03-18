@@ -6,7 +6,7 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/26 12:46:26 by pabril            #+#    #+#              #
-#    Updated: 2016/03/18 11:19:13 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/18 21:02:50 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,6 @@ SRC = ft_atoi.c \
 	  ft_islower.c \
 	  ft_isspace.c \
 	  ft_itoa.c \
-	  ft_lstadd.c \
-	  ft_lstpushback.c \
-	  ft_lstdel.c \
-	  ft_lstdelone.c \
-	  ft_lstiter.c \
-	  ft_lstmap.c \
-	  ft_lstnew.c \
 	  ft_memalloc.c \
 	  ft_memccpy.c \
 	  ft_memchr.c \
@@ -84,7 +77,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	@echo "building library"
+	@echo "building $(NAME)"
 	@$(CC) $(FLAGS) -c $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)

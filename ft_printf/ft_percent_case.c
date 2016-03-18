@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_percent_case.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Created: 2016/03/15 10:15:11 by pabril            #+#    #+#             */
+/*   Updated: 2016/03/15 10:55:28 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "libft.h"
+#include "ft_printf.h"
 
-int		main(int argc, const char *argv[])
+int		ft_percent_case(t_list *lst)
 {
-	t_current	*current;
-	static int	begin = 1;
-
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
+	if (lst->size > 1)
 	{
-		init_struct(current);
-		first_lecture(current);
+		if (lst->minus)
+		{
+			lst->result += ft_print_char('%');
+			lst->result += ft_print_space(lst->size - 1);
+			return (0);
+		}
+		else if (lst->zero)
+			lst->result += ft_print_zeros(lst->size, 1);
+		else
+			lst->result += ft_print_space(lst->size - 1);
+		lst->result += ft_print_char('%');
 	}
 	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
+		lst->result += ft_print_char('%');
 	return (0);
 }
