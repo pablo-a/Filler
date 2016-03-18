@@ -6,35 +6,40 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/17 17:57:22 by pabril            #+#    #+#              #
-#    Updated: 2016/03/17 18:09:45 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/18 11:39:34 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = filler
 
-FILE = main.c
-SRCS = $(addprefix src/, $(FILES))
+FILE = main.c \
+	   lecture.c \
+	   resolution.c
+
+SRCS = $(addprefix src/, $(FILE))
 INC = -I includes -I libft
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-LIB = -L libft -lft
+LIB = libft/libft.a
 
 all : $(NAME)
 
-$(NAME) : $(OBJ)
+$(NAME) :
 	@make -C libft
 	@echo "building filler binary"
-	@$(CC) $(FLAGS) -o $(NAME) $(INC) $(LIB)
+	$(CC) $(FLAGS) -o $(NAME) $(INC) $(SRCS) $(LIB)
 
 clean :
-	@echo "destroying all objects"
-	@rm *.o
-	@rm libft/*.o
+	@echo "delete *.o in filler"
+	@rm -f *.o 
 
-fclean : clean
-	@echo "removing $(NAME)"
-	@rm $(NAME)
+fclean_lib :
+	@make fclean -C libft
+
+fclean : clean fclean_lib
+	@echo "removing $(NAME) binary"
+	@rm -f $(NAME)
 
 re : fclean all
 

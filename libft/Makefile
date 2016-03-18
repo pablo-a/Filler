@@ -6,7 +6,7 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/26 12:46:26 by pabril            #+#    #+#              #
-#    Updated: 2016/03/17 19:02:01 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/18 11:19:13 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ $(NAME):
 	@ranlib $(NAME)
 
 clean:
-	@echo "delete *.o"
+	@echo "delete *.o in libft"
 	@rm -f *.o
 
 fclean: clean
