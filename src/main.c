@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 15:17:12 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 16:44:57 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ int		main(void)
 
 	init_struct(&current, tab);
 	lecture(&current, tab);
-	//resolution(&current);
 	return (0);
 }

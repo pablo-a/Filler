@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:42:11 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 15:27:12 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 19:15:52 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,7 @@
 #include "filler.h"
 #include "ft_printf.h"
 
-void	resolution(t_current *current)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y !<= (current->plateau->Y - current->piece->Y))
-	{
-		x = 0;
-		while (x <= current->plateau->X - current->piece->X)
-		{
-			if (can_place_piece(current, x, y, current->mysign))
-			{
-				ft_printf("%d %d\n", y, x);
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-	ft_printf("0 0\n");
-}
-
-int		can_place_piece(t_current *current, int x, int y, char c)
+int		can_place(t_current *current, int x, int y, char c)
 {
 	int i;
 	int j;
@@ -52,10 +29,13 @@ int		can_place_piece(t_current *current, int x, int y, char c)
 		i = 0;
 		while (i != current->piece->X)
 		{
+			if ((y + j) > current->plateau->Y || (x + i) > current->plateau->X)
+				return (0);
 			if ((PIECE[j][i] == '*') &&
-			(PLATEAU[y + j][x + i] == c || PLATEAU[y + j][x + i] == c - 32))
+					(PLATEAU[y + j][x + i] == c || PLATEAU[y + j][x + i] == c - 32))
 				count++;
-			else if ((PIECE[j][i] == '*') && (PLATEAU[y + j][x + i] != '.') && PLATEAU[y + j][x + i] != 'c' && PLATEAU[y + j][x +i] != c - 32)
+			else if ((PIECE[j][i] == '*') && (PLATEAU[y + j][x + i] != '.') &&
+					PLATEAU[y + j][x + i] != 'c' && PLATEAU[y + j][x + i] != c - 32)
 				return (0);
 			if (count > 1)
 				return (0);
@@ -66,4 +46,28 @@ int		can_place_piece(t_current *current, int x, int y, char c)
 	if (count == 0)
 		return (0);
 	return (1);
+}
+
+void	resolution(t_current *current)
+{
+	int			(*place[4])(t_current *current, char c);
+	static int	i = 0;
+	int			end;
+
+	place[0] = place_high_left;
+	place[1] = place_high_right;
+	place[2] = place_low_right;
+	place[3] = place_low_left;
+	end = 0;
+	while ((place[i % 4](current, current->mysign) == 0))
+	{
+		i++;
+		end++;
+		if (end == 4)
+		{
+			ft_printf("0 0\n");
+			return ;
+		}
+	}
+	i++;
 }

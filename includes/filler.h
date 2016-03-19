@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 09:39:15 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 14:36:31 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 17:59:50 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ void	eb_print_info(t_current *d);
 void	eb_print_board(t_current *d);
 void	eb_print_piece(t_current *d);
 
-int		can_place_piece(t_current *current, int x, int yi, char c);
+int		place_high_left(t_current *current, char c);
+int		place_high_right(t_current *current, char c);
+int		place_low_right(t_current *current, char c);
+int		place_low_left(t_current *current, char c);
+
+int		can_place(t_current *current, int x, int y, char c);
 void	resolution(t_current *current);
 
 #endif

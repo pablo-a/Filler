@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:40:29 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 15:22:59 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 16:50:16 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	fill_plateau(t_current *current, char **line, int *tab)
 	{
 		current->plateau->Y = ft_atoi(line[1]);
 		current->plateau->X = ft_atoi(line[2]);
-		if (tab[3] > 1 && tab[3]--)
-			free_tab_str(PLATEAU);
+		//if (tab[3] > 1 && tab[3]--)
+		//	free_tab_str(PLATEAU);
 		if ((PLATEAU = (char **)malloc(sizeof(char *) *
 						(current->plateau->Y + 1))) == 0)
 			perror("wasnt able to allocate memory for the gameboard");
@@ -54,11 +54,9 @@ void	lecture(t_current *current, int *tab)
 				tab[1] < current->plateau->Y + 2)
 			fill_plateau(current, line, tab);
 		else if (ft_strcmp(line[0], "Piece") == 0 ||
-				tab[2] < current->piece->Y + 2)
+				tab[2] < current->piece->Y + 1)
 			get_piece(current, line, tab);
 	}
-	resolution(current);
-	init_struct(current, tab);
 }
 
 void	get_piece(t_current *current, char **line, int *tab)
@@ -67,15 +65,21 @@ void	get_piece(t_current *current, char **line, int *tab)
 	{
 		current->piece->Y = ft_atoi(line[1]);
 		current->piece->X = ft_atoi(line[2]);
-		if (tab[4] > 1 && tab[4]--)
-			free_tab_str(PIECE);
+		//if (tab[4] > 1 && tab[4]--)
+		//	free_tab_str(PIECE);
 		if ((PIECE = (char **)malloc(sizeof(char *) *
 						(current->piece->Y + 1))) == 0)
 			perror("wasnt able to allocate memory for the piece");
+		PIECE[current->piece->Y] = "\0";
 	}
 	else if (tab[2])
 		PIECE[tab[2] - 1] = ft_strdup(line[0]);
 	tab[2]++;
+	if (tab[2] == current->piece->Y + 1)
+ 	{
+		resolution(current);
+		init_struct(current, tab);
+	}
 }
 
 void	init_struct(t_current *current, int *tab)
@@ -106,8 +110,9 @@ int		free_tab_str(char **str)
 		return (0);
 	i = 0;
 	while (str[i])
+	{
 		free(str[i]);
-	free(str[i]);
-	free(str);
+		i++;
+	}
 	return (0);
 }
