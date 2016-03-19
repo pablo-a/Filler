@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/20 16:29:50 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 12:29:18 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 13:26:40 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int		ft_string_case(t_list *lst, va_list *ap)
 
 int		ft_string_case2(t_list *lst, char *str, size_t len)
 {
-	if (lst->precision < len && lst->precision >= 0 && lst->modified_precision)
+	if ((size_t)lst->precision < len && lst->precision >= 0 &&
+			lst->modified_precision)
 	{
 		str[lst->precision] = '\0';
 		ft_aff_str(str, lst, lst->precision);

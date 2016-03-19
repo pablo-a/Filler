@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/03 14:39:06 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 11:58:06 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:58:46 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int		ft_handle_signed(long long a, t_list *lst)
 		if (lst->plus || (lst->plus && lst->blanck))
 			ft_plus_case(a, lst, 1);
 		else if (lst->zero && !lst->precision)
-			ft_zero(a, lst, 1);
+			ft_zero(a, lst);
 		else if (lst->blanck)
-			ft_blanck(a, lst, 1);
+			ft_blanck(a, lst);
 		else
 			ft_noflag(a, lst, 1);
 	}
@@ -34,7 +34,7 @@ int		ft_handle_signed(long long a, t_list *lst)
 		if (lst->plus || (lst->plus && lst->blanck))
 			ft_plus_case(a, lst, 0);
 		else if (lst->blanck)
-			ft_blanck(a, lst, 0);
+			ft_blanck(a, lst);
 		else
 			ft_noflag(a, lst, 0);
 	}
@@ -82,7 +82,7 @@ void	ft_plus_case(long long a, t_list *lst, int flag)
 	ft_print_precision(a, lst);
 }
 
-int		ft_zero(long long a, t_list *lst, int precision)
+int		ft_zero(long long a, t_list *lst)
 {
 	if (lst->blanck && a >= 0)
 	{
@@ -100,7 +100,7 @@ int		ft_zero(long long a, t_list *lst, int precision)
 	return (0);
 }
 
-int		ft_blanck(long long a, t_list *lst, int flag)
+int		ft_blanck(long long a, t_list *lst)
 {
 	if (a >= 0)
 	{

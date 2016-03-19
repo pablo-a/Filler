@@ -6,99 +6,108 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:40:29 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:44:16 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 15:22:59 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-void	first_lecture(t_current *current)
+#define PLATEAU current->plateau->plateau
+#define PIECE current->piece->piece
+
+void	fill_plateau(t_current *current, char **line, int *tab)
+{
+	if (tab[1] == 0)
+	{
+		current->plateau->Y = ft_atoi(line[1]);
+		current->plateau->X = ft_atoi(line[2]);
+		if (tab[3] > 1 && tab[3]--)
+			free_tab_str(PLATEAU);
+		if ((PLATEAU = (char **)malloc(sizeof(char *) *
+						(current->plateau->Y + 1))) == 0)
+			perror("wasnt able to allocate memory for the gameboard");
+		PLATEAU[current->plateau->Y] = "\0";
+	}
+	if (tab[1] > 1)
+		PLATEAU[tab[1] - 2] = ft_strdup(line[1]);
+	tab[1]++;
+}
+
+void	lecture(t_current *current, int *tab)
 {
 	char	*str;
-	char	**tab;
+	char	**line;
 
-	get_next_line(0, &str);
-	tab = ft_strsplit(str, ' ');
-	if (ft_strcmp(tab[0], "$$$") == 0) // multi-player
+	while (get_next_line(0, &str) > 0)
 	{
-		current->player = ft_atoi(&tab[2][1]);
-		if (current->player == 1)
-			current->mysign = 'o';
-		else
-			current->mysign = 'x';
-		lecture(current);
+		line = ft_strsplit(str, ' ');
+		if (ft_strcmp(line[0], "$$$") == 0 && tab[0] == 0) // multi-player
+		{
+			current->player = ft_atoi(&line[2][1]);
+			if (current->player == 1)
+				current->mysign = 'o';
+			else
+				current->mysign = 'x';
+			tab[0]++;
+		}
+		else if (ft_strcmp(line[0], "Plateau") == 0 ||
+				tab[1] < current->plateau->Y + 2)
+			fill_plateau(current, line, tab);
+		else if (ft_strcmp(line[0], "Piece") == 0 ||
+				tab[2] < current->piece->Y + 2)
+			get_piece(current, line, tab);
 	}
-	else//								// solo-player
-		fill_plateau(current, tab);
+	resolution(current);
+	init_struct(current, tab);
 }
 
-void	fill_plateau(t_current *current, char **tab)
+void	get_piece(t_current *current, char **line, int *tab)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	current->plateau->Y = ft_atoi(tab[1]);
-	current->plateau->X = ft_atoi(tab[2]);
-	if ((current->plateau->plateau = (char **)malloc(sizeof(char *) *
-					(current->plateau->Y + 1))) == 0)
-		perror("wasnt able to allocate memory for the gameboard");
-	get_next_line(0, &str);
-	while (i < (current->plateau->Y))
+	if (tab[2] == 0)
 	{
-		if (get_next_line(0, &str) < 0)
-			return (ft_putendl("not able to read the map"));
-		(current->plateau->plateau)[i] = ft_strsub(str, 4, current->plateau->X);
-		//printf("%s\n", current->plateau->plateau[i]);
-		i++;
+		current->piece->Y = ft_atoi(line[1]);
+		current->piece->X = ft_atoi(line[2]);
+		if (tab[4] > 1 && tab[4]--)
+			free_tab_str(PIECE);
+		if ((PIECE = (char **)malloc(sizeof(char *) *
+						(current->piece->Y + 1))) == 0)
+			perror("wasnt able to allocate memory for the piece");
 	}
-	get_piece(current);
-
+	else if (tab[2])
+		PIECE[tab[2] - 1] = ft_strdup(line[0]);
+	tab[2]++;
 }
 
-void	lecture(t_current *current)
+void	init_struct(t_current *current, int *tab)
 {
-	char	*str;
-	char	**tab;
-	int		i;
-
-	i = 0;
-	if (get_next_line(0, &str) < 1)
-		return (ft_putendl("unable to read input correctly"));
-	tab = ft_strsplit(str, ' ');
-	fill_plateau(current, tab);
-}
-
-void	get_piece(t_current *current)
-{
-	char *str;
-	char	**tab;
-	int		i;
-
-	i = 0;
-	if (get_next_line(0, &str) < 1)
-		return (ft_putendl("unable to read input correctly"));
-	tab = ft_strsplit(str, ' ');
-	current->piece->X = ft_atoi(tab[2]);
-	current->piece->Y = ft_atoi(tab[1]);
-	if ((current->piece->piece = (char **)malloc(sizeof(char *) *
-					(current->piece->Y + 1))) == 0)
-		perror("wasnt able to allocate memory for the gameboard");
-	while (i <= (current->piece->Y))
-	{
-		if (get_next_line(0, &str) < 0)
-			return (ft_putendl("not able to read the map"));
-		current->piece->piece[i] = ft_strnew(current->piece->X);
-		ft_strncpy((current->piece->piece)[i], str, current->piece->X);
-		//printf("%s\n", current->piece->piece[i]);
-		i++;
-	}
-}
-
-int		init_struct(t_current *current)
-{
+	if (!current->piece)
+		if ((current->piece = (t_piece *)malloc(sizeof(t_piece))) == 0)
+			return (perror("bad allocation"));
+	if (!current->plateau)
+		if ((current->plateau = (t_plateau *)malloc(sizeof(t_plateau))) == 0)
+			return (perror("bad allocation"));
 	current->player = 0;
-	current->piece = (t_piece *)malloc(sizeof(t_piece));
-	current->plateau = (t_plateau *)malloc(sizeof(t_plateau));
+	current->piece->X = 0;
+	current->piece->Y = 0;
+	current->plateau->X = 0;
+	current->plateau->Y = 0;
+	tab[0] = 0;
+	tab[1] = 0;
+	tab[2] = 0;
+	tab[3]++;
+	tab[4]++;
+}
+
+int		free_tab_str(char **str)
+{
+	int i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+		free(str[i]);
+	free(str[i]);
+	free(str);
 	return (0);
 }

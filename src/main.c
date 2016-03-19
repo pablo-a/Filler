@@ -6,28 +6,19 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 18:33:04 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:24:20 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 15:17:12 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		main(int argc, const char *argv[])
+int		main(void)
 {
-	t_current	*current;
-	static int	begin = 1;
+	t_current	current;
+	int			tab[5] = {0, 0, 0, 0, 0};
 
-	if ((current = (t_current *)malloc(sizeof(t_current))) == NULL)
-		return (0);
-	if (begin && begin--)
-	{
-		init_struct(current);
-		first_lecture(current);
-	}
-	else
-		lecture(current);
-	resolution(current);
-	argc = 2;
-	argv[0] = "easy";
+	init_struct(&current, tab);
+	lecture(&current, tab);
+	//resolution(&current);
 	return (0);
 }

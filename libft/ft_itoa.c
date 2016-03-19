@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 17:23:53 by pabril            #+#    #+#             */
-/*   Updated: 2015/12/04 16:37:09 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 11:41:13 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,4 @@ char		*ft_itoa(int n)
 	}
 	ft_itoa_recursive(&str, n);
 	return (result);
-}
-
-int			main(void)
-{
-	ft_putstr(ft_itoa(12345678));
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 12:11:08 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 12:41:23 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 13:00:20 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_printxo(t_list *lst, int base, unsigned long long nb, int spaces)
 			lst->result += ft_print_zeros(lst->precision,
 					ft_baselen(nb, 0, base));
 			ft_put_base(nb, base, lst);
-			lst->result += ((size_t)lst->precision > ft_baselen(nb, 0, base) ?
+			lst->result += (lst->precision > ft_baselen(nb, 0, base) ?
 					ft_print_space(lst->size - lst->precision - base) :
 					ft_print_space(lst->size - ft_baselen(nb, 0, base) -
 						spaces));
@@ -48,7 +48,7 @@ int		ft_printxo(t_list *lst, int base, unsigned long long nb, int spaces)
 		}
 		lst->result += ft_print_zeros(lst->precision, ft_baselen(nb, 0, base));
 		ft_put_base(nb, base, lst);
-		lst->result += ((size_t)lst->precision > ft_baselen(nb, 0, base) ?
+		lst->result += (lst->precision > ft_baselen(nb, 0, base) ?
 				ft_print_space(lst->size - lst->precision) :
 				ft_print_space(lst->size - ft_baselen(nb, 0, base)));
 		return (0);
@@ -62,7 +62,7 @@ int		ft_printxo2(t_list *lst, int base, unsigned long long nb, int spaces)
 {
 	if (lst->diese && nb)
 	{
-		lst->result += ((size_t)lst->precision > ft_baselen(nb, 0, base) ?
+		lst->result += (lst->precision > ft_baselen(nb, 0, base) ?
 				ft_print_space(lst->size - lst->precision - base) :
 				ft_print_space(lst->size - ft_baselen(nb, 0, base) -
 					spaces));
@@ -73,7 +73,7 @@ int		ft_printxo2(t_list *lst, int base, unsigned long long nb, int spaces)
 		ft_put_base(nb, base, lst);
 		return (0);
 	}
-	lst->result += (((size_t)lst->precision > ft_baselen(nb, 0, base)) ?
+	lst->result += ((lst->precision > ft_baselen(nb, 0, base)) ?
 			ft_print_space(lst->size - lst->precision) :
 			ft_print_space(lst->size - ft_baselen(nb, 0, base)));
 	lst->result += ft_print_zeros(lst->precision, ft_baselen(nb, 0, base));

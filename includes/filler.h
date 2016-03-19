@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 09:39:15 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 20:37:36 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 14:36:31 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,16 @@ typedef struct	s_current
 	t_plateau	*plateau;
 }				t_current;
 
-int		init_struct(t_current *current);
-void	first_lecture(t_current *current);
-void	lecture(t_current *current);
-void	fill_plateau(t_current *current, char **tab);
-void	get_piece(t_current *current);
+void	init_struct(t_current *current, int *tab);
+void	lecture(t_current *current, int *tab);
+void	fill_plateau(t_current *current, char **line, int *tab);
+void	get_piece(t_current *current, char **line, int *tab);
+int		free_tab_str(char **str);
+
+void	eb_test(t_current *d);
+void	eb_print_info(t_current *d);
+void	eb_print_board(t_current *d);
+void	eb_print_piece(t_current *d);
 
 int		can_place_piece(t_current *current, int x, int yi, char c);
 void	resolution(t_current *current);

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:42:11 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/18 21:44:18 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/19 15:27:12 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	resolution(t_current *current)
 	int y;
 
 	y = 0;
-	while (y != (current->plateau->Y))
+	while (y !<= (current->plateau->Y - current->piece->Y))
 	{
 		x = 0;
-		while (x != current->plateau->X)
+		while (x <= current->plateau->X - current->piece->X)
 		{
 			if (can_place_piece(current, x, y, current->mysign))
 			{
@@ -36,7 +36,7 @@ void	resolution(t_current *current)
 		}
 		y++;
 	}
-	return (ft_putendl("cannot place this piece in the grid, sorry"));
+	ft_printf("0 0\n");
 }
 
 int		can_place_piece(t_current *current, int x, int y, char c)
@@ -55,8 +55,8 @@ int		can_place_piece(t_current *current, int x, int y, char c)
 			if ((PIECE[j][i] == '*') &&
 			(PLATEAU[y + j][x + i] == c || PLATEAU[y + j][x + i] == c - 32))
 				count++;
-			else if ((PIECE[j][i] == '*') && PLATEAU[y + j][x + i] != '.')
-				count++;
+			else if ((PIECE[j][i] == '*') && (PLATEAU[y + j][x + i] != '.') && PLATEAU[y + j][x + i] != 'c' && PLATEAU[y + j][x +i] != c - 32)
+				return (0);
 			if (count > 1)
 				return (0);
 			i++;

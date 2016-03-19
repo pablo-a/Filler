@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 10:45:26 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 12:39:31 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:59:46 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		ft_print_u(t_list *lst, unsigned long long b)
 
 int		ft_baselen(unsigned long long n, int size, int base)
 {
-	if (n >= base)
+	if (n >= (unsigned long long)base)
 		size = ft_baselen(n / base, size, base);
 	if (n % base < 10)
 		size++;
@@ -79,7 +79,7 @@ int		ft_baselen(unsigned long long n, int size, int base)
 
 int		ft_putbase(unsigned long long n, int size, int base, t_list *lst)
 {
-	if (n >= base)
+	if (n >= (unsigned long long)base)
 		size = ft_putbase(n / base, size, base, lst);
 	if (n % base < 10)
 		size += ft_print_char((n % base) + '0');
@@ -96,7 +96,6 @@ int		ft_putbase(unsigned long long n, int size, int base, t_list *lst)
 int		ft_put_base(unsigned long long nbr, int base, t_list *lst)
 {
 	int	size;
-	int	min;
 
 	size = 0;
 	if (base == 8)

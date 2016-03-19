@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/17 11:55:20 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 11:59:43 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 12:56:09 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int		ft_noflag(long long a, t_list *lst, int flag)
 				ft_print_space(lst->size - ft_len_number(a)));
 	}
 	else
-		ft_noflag2(a, lst, flag);
+		ft_noflag2(a, lst);
 	return (0);
 }
 
-int		ft_noflag2(long long a, t_list *lst, int flag)
+int		ft_noflag2(long long a, t_list *lst)
 {
 	if (a < 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 14:27:16 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/17 12:43:16 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/17 13:26:56 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <stddef.h>
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <inttypes.h>
 # include <wchar.h>
@@ -73,9 +72,9 @@ int					ft_ptr_case(t_list *lst, va_list *ap);
 
 int					ft_handle_signed(long long a, t_list *lst);
 int					ft_noflag(long long a, t_list *lst, int flag);
-int					ft_noflag2(long long a, t_list *lst, int flag);
-int					ft_zero(long long a, t_list *lst, int precision);
-int					ft_blanck(long long a, t_list *lst, int flag);
+int					ft_noflag2(long long a, t_list *lst);
+int					ft_zero(long long a, t_list *lst);
+int					ft_blanck(long long a, t_list *lst);
 void				ft_plus_case(long long a, t_list *lst, int flag);
 int					ft_print_precision(long long a, t_list *lst);
 

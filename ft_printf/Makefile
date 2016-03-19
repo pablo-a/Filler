@@ -6,12 +6,12 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/13 21:36:42 by pabril            #+#    #+#              #
-#    Updated: 2016/03/18 21:02:24 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/17 13:00:59 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra 
+FLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 
@@ -55,7 +55,7 @@ $(NAME) :
 
 
 clean :
-	@ echo "delete *.o in ft_printf"
+	@ echo "delete *.o"
 	@ rm -rf *.o
 
 fclean : clean
