@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:42:11 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 19:15:52 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/21 15:19:54 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@
 #include "filler.h"
 #include "ft_printf.h"
 
+int		avance_j(int i, int j, t_current *current)
+{
+	while (j != current->piece->Y)
+	{
+		while (i != current->piece->X)
+		{
+			if (PIECE[j][i] == '*')
+				return (j);
+			i++;
+		}
+		j++;
+	}
+	return (0);
+}
+
 int		can_place(t_current *current, int x, int y, char c)
 {
 	int i;
@@ -23,19 +38,20 @@ int		can_place(t_current *current, int x, int y, char c)
 	int count;
 
 	count = 0;
-	j = 0;
+	j = avance_j(0, 0, current);
 	while (j != current->piece->Y)
 	{
 		i = 0;
 		while (i != current->piece->X)
 		{
-			if ((y + j) > current->plateau->Y || (x + i) > current->plateau->X)
+			if (((y + j) >= current->plateau->Y || (x + i) >=
+						current->plateau->X) && PIECE[j][i] != '.')
 				return (0);
 			if ((PIECE[j][i] == '*') &&
-					(PLATEAU[y + j][x + i] == c || PLATEAU[y + j][x + i] == c - 32))
+				(PLATEAU[y + j][x + i] == c || PLATEAU[y + j][x + i] == c - 32))
 				count++;
 			else if ((PIECE[j][i] == '*') && (PLATEAU[y + j][x + i] != '.') &&
-					PLATEAU[y + j][x + i] != 'c' && PLATEAU[y + j][x + i] != c - 32)
+				PLATEAU[y + j][x + i] != 'c' && PLATEAU[y + j][x + i] != c - 32)
 				return (0);
 			if (count > 1)
 				return (0);

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 09:39:15 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 17:59:50 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/21 15:19:56 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,19 @@ typedef struct	s_current
 	t_plateau	*plateau;
 }				t_current;
 
-void	init_struct(t_current *current, int *tab);
-void	lecture(t_current *current, int *tab);
-void	fill_plateau(t_current *current, char **line, int *tab);
-void	get_piece(t_current *current, char **line, int *tab);
-int		free_tab_str(char **str);
+void			init_struct(t_current *current, int *tab);
+void			lecture(t_current *current, int *tab);
+void			fill_plateau(t_current *current, char **line, int *tab);
+void			get_piece(t_current *current, char **line, int *tab);
+int				free_tab_str(char **str);
 
-void	eb_test(t_current *d);
-void	eb_print_info(t_current *d);
-void	eb_print_board(t_current *d);
-void	eb_print_piece(t_current *d);
+int				place_high_left(t_current *current, char c);
+int				place_high_right(t_current *current, char c);
+int				place_low_right(t_current *current, char c);
+int				place_low_left(t_current *current, char c);
 
-int		place_high_left(t_current *current, char c);
-int		place_high_right(t_current *current, char c);
-int		place_low_right(t_current *current, char c);
-int		place_low_left(t_current *current, char c);
-
-int		can_place(t_current *current, int x, int y, char c);
-void	resolution(t_current *current);
+int				avance_j(int i, int j, t_current *current);
+int				can_place(t_current *current, int x, int y, char c);
+void			resolution(t_current *current);
 
 #endif

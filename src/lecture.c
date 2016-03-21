@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:40:29 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 16:50:16 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/21 14:09:34 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	fill_plateau(t_current *current, char **line, int *tab)
 	{
 		current->plateau->Y = ft_atoi(line[1]);
 		current->plateau->X = ft_atoi(line[2]);
-		//if (tab[3] > 1 && tab[3]--)
-		//	free_tab_str(PLATEAU);
 		if ((PLATEAU = (char **)malloc(sizeof(char *) *
 						(current->plateau->Y + 1))) == 0)
 			perror("wasnt able to allocate memory for the gameboard");
@@ -41,7 +39,7 @@ void	lecture(t_current *current, int *tab)
 	while (get_next_line(0, &str) > 0)
 	{
 		line = ft_strsplit(str, ' ');
-		if (ft_strcmp(line[0], "$$$") == 0 && tab[0] == 0) // multi-player
+		if (ft_strcmp(line[0], "$$$") == 0 && tab[0] == 0)
 		{
 			current->player = ft_atoi(&line[2][1]);
 			if (current->player == 1)
@@ -65,8 +63,6 @@ void	get_piece(t_current *current, char **line, int *tab)
 	{
 		current->piece->Y = ft_atoi(line[1]);
 		current->piece->X = ft_atoi(line[2]);
-		//if (tab[4] > 1 && tab[4]--)
-		//	free_tab_str(PIECE);
 		if ((PIECE = (char **)malloc(sizeof(char *) *
 						(current->piece->Y + 1))) == 0)
 			perror("wasnt able to allocate memory for the piece");
@@ -76,7 +72,7 @@ void	get_piece(t_current *current, char **line, int *tab)
 		PIECE[tab[2] - 1] = ft_strdup(line[0]);
 	tab[2]++;
 	if (tab[2] == current->piece->Y + 1)
- 	{
+	{
 		resolution(current);
 		init_struct(current, tab);
 	}
@@ -98,8 +94,6 @@ void	init_struct(t_current *current, int *tab)
 	tab[0] = 0;
 	tab[1] = 0;
 	tab[2] = 0;
-	tab[3]++;
-	tab[4]++;
 }
 
 int		free_tab_str(char **str)

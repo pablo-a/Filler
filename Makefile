@@ -6,7 +6,7 @@
 #    By: pabril <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/17 17:57:22 by pabril            #+#    #+#              #
-#    Updated: 2016/03/19 17:13:22 by pabril           ###   ########.fr        #
+#    Updated: 2016/03/21 15:19:58 by pabril           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,14 +15,13 @@ NAME = filler
 FILE = main.c \
 	   lecture.c \
 	   resolution.c \
-	   test.c \
 	   place.c
 
 SRCS = $(addprefix src/, $(FILE))
 INC = -I includes -I libft -I ft_printf
 
 CC = gcc
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -Werror
 LIB = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 

@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:10:10 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/19 19:08:57 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/21 12:31:42 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int		place_high_left(t_current *current, char c)
 	while (y < current->plateau->Y)
 	{
 		x = 0;
-		while(x < current->plateau->X)
+		while (x < current->plateau->X)
 		{
 			if (can_place(current, x, y, c))
-				return(ft_printf("%d %d\n", y, x));
+				return (ft_printf("%d %d\n", y, x));
 			x++;
 		}
 		y++;
@@ -40,14 +40,14 @@ int		place_high_right(t_current *current, char c)
 	int x;
 	int y;
 
-	x = current->plateau->X;
+	x = current->plateau->X - 1;
 	while (x >= 0)
 	{
 		y = 0;
 		while (y < current->plateau->Y)
 		{
 			if (can_place(current, x, y, c))
-				return(ft_printf("%d %d\n", y, x));
+				return (ft_printf("%d %d\n", y, x));
 			y++;
 		}
 		x--;
@@ -60,14 +60,14 @@ int		place_low_right(t_current *current, char c)
 	int x;
 	int y;
 
-	y = current->plateau->Y;
+	y = current->plateau->Y - 1;
 	while (y >= 0)
 	{
-		x = current->plateau->X;
-		while(x >= 0)
+		x = current->plateau->X - 1;
+		while (x >= 0)
 		{
 			if (can_place(current, x, y, c))
-				return(ft_printf("%d %d\n", y, x));
+				return (ft_printf("%d %d\n", y, x));
 			x--;
 		}
 		y--;
@@ -83,11 +83,11 @@ int		place_low_left(t_current *current, char c)
 	x = 0;
 	while (x < current->plateau->X)
 	{
-		y = current->plateau->Y;
+		y = current->plateau->Y - 1;
 		while (y >= 0)
 		{
 			if (can_place(current, x, y, c))
-				return(ft_printf("%d %d\n", y, x));
+				return (ft_printf("%d %d\n", y, x));
 			y--;
 		}
 		x++;
