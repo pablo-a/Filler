@@ -6,12 +6,14 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 17:10:10 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/21 12:31:42 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/22 11:15:30 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define PIECE current->piece->piece
 #define PLATEAU current->plateau->plateau
+#define X x
+#define Y y
 
 #include "filler.h"
 

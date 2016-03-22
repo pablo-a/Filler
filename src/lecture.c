@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:40:29 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/21 14:09:34 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/22 11:15:06 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #define PLATEAU current->plateau->plateau
 #define PIECE current->piece->piece
+#define X x
+#define Y y
 
 void	fill_plateau(t_current *current, char **line, int *tab)
 {

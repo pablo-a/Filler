@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 09:39:15 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/21 15:19:56 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/22 11:13:58 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@
 
 typedef struct	s_plateau
 {
-	int		X;
-	int		Y;
+	int		x;
+	int		y;
 	char	**plateau;
 }				t_plateau;
 
 typedef struct	s_piece
 {
-	int		X;
-	int		Y;
+	int		x;
+	int		y;
 	char	**piece;
 }				t_piece;
 
