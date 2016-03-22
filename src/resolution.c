@@ -6,7 +6,7 @@
 /*   By: pabril <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/18 10:42:11 by pabril            #+#    #+#             */
-/*   Updated: 2016/03/21 15:19:54 by pabril           ###   ########.fr       */
+/*   Updated: 2016/03/22 11:11:18 by pabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ int		avance_j(int i, int j, t_current *current)
 	return (0);
 }
 
+int		avance_i(int i, int j, t_current *current)
+{
+	while (i != current->piece->X)
+	{
+		while (j != current->piece->Y)
+		{
+			if (PIECE[j][i] == '*')
+				return (i);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int		can_place(t_current *current, int x, int y, char c)
 {
 	int i;
@@ -41,7 +56,7 @@ int		can_place(t_current *current, int x, int y, char c)
 	j = avance_j(0, 0, current);
 	while (j != current->piece->Y)
 	{
-		i = 0;
+		i = avance_i(0, j, current);
 		while (i != current->piece->X)
 		{
 			if (((y + j) >= current->plateau->Y || (x + i) >=
@@ -53,15 +68,11 @@ int		can_place(t_current *current, int x, int y, char c)
 			else if ((PIECE[j][i] == '*') && (PLATEAU[y + j][x + i] != '.') &&
 				PLATEAU[y + j][x + i] != 'c' && PLATEAU[y + j][x + i] != c - 32)
 				return (0);
-			if (count > 1)
-				return (0);
 			i++;
 		}
 		j++;
 	}
-	if (count == 0)
-		return (0);
-	return (1);
+	return (count == 1 ? 1 : 0);
 }
 
 void	resolution(t_current *current)
